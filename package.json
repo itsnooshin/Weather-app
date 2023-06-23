@@ -1,0 +1,26 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "This is simple weather app using HTML , CSS ,JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsnooshin/Weather-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/itsnooshin/Weather-app/issues"
+  },
+  "homepage": "https://github.com/itsnooshin/Weather-app#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  }
+}
