@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800;900&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  background-image: url('../images/cloudy-weather.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #fff;
+}
+.main{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  /* height: 100vh; */
+  height: 100%;
+}
+.main__left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 5rem;
+  padding-top: 3rem;
+  gap: 0rem;
+
+  
+}
+.header {
+  
+}
+.header__title {
+  font-weight: 400;
+  font-size: 1.7rem;
+}
+
+.weather__header-temporty{
+  font-size: 10rem;
+}
+.weather__header{
+ 
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  /* flex-direction: column; */
+  flex-direction: row;
+  /* padding-bottom: 10rem; */
+}
+.weather__type{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+}
+.weather__type img{
+  width: 60px;
+}
+.weather__city{
+  font-size: 4rem;
+}
+.weather__date{
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+.weather__title--type{
+  font-size: 1.4rem;
+}
+
+.main__right{
+ 
+background: linear-gradient(359.94deg, rgba(0, 0, 0, 0.1) 5.09%, #191A15 20.6%, rgba(12, 12, 10, 0.1) 38.53%, rgba(0, 0, 0, 0.1) 54.26%, rgba(0, 0, 0, 0.1) 99.96%);
+backdrop-filter: blur(5px);
+}
