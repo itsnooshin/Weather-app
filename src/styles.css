@@ -150,8 +150,6 @@ h5 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
-
 }
 .wetaher__detail-information:not(:last-child){
   margin-bottom: 2rem;
@@ -171,4 +169,27 @@ h5 {
 .weather__detail-info--percentage{
   font-size: 1.3rem;
   font-weight: 200;
+}
+.waether__week img{
+  width: 30px;
+}
+.waether__week{
+  padding-bottom: 4rem;
+  padding-top: 3rem;
+}
+.weather__week-info{
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+.waether__week{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.day{
+  font-size: 1.4rem;
+}
+.weather__temp{
+  font-size: 1.3rem;
 }
