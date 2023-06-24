@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800;900&display=swap');
 
 * {
-  box-sizing: border-box;
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 html {
   font-size: 62.5%;
@@ -24,7 +24,7 @@ h4,
 h5 {
   color: #fff;
 }
-.main{
+.main {
   display: grid;
   grid-template-columns: 2fr 1fr;
   /* height: 100vh; */
@@ -37,22 +37,18 @@ h5 {
   padding-left: 5rem;
   padding-top: 3rem;
   gap: 0rem;
-
-  
 }
 .header {
-  
 }
 .header__title {
   font-weight: 400;
   font-size: 1.7rem;
 }
 
-.weather__header-temporty{
+.weather__header-temporty {
   font-size: 10rem;
 }
-.weather__header{
- 
+.weather__header {
   display: flex;
   align-items: center;
   gap: 30px;
@@ -60,29 +56,119 @@ h5 {
   flex-direction: row;
   /* padding-bottom: 10rem; */
 }
-.weather__type{
+.weather__type {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-
 }
-.weather__type img{
+.weather__type img {
   width: 60px;
 }
-.weather__city{
+.weather__city {
   font-size: 4rem;
 }
-.weather__date{
+.weather__date {
   font-size: 1.6rem;
   font-weight: 500;
 }
-.weather__title--type{
+.weather__title--type {
   font-size: 1.4rem;
 }
 
-.main__right{
+.main__right {
+  background: linear-gradient(
+    359.94deg,
+    rgba(0, 0, 0, 0.1) 5.09%,
+    #191a15 20.6%,
+    rgba(12, 12, 10, 0.1) 38.53%,
+    rgba(0, 0, 0, 0.1) 54.26%,
+    rgba(0, 0, 0, 0.1) 99.96%
+  );
+  backdrop-filter: blur(5px);
+}
+.form__input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.img__icon {
+  width: 30px;
+}
+.form__button {
+  border: none;
+  background-color: transparent;
+  right: 0;
+  top: 0;
+}
+.input__text {
+  background-color: transparent;
+  border: none;
+  color: #ffff;
+  border: none;
+  position: relative;
+  font-size: 2rem;
+}
+.input__text::placeholder {
+  font-family: 'Poppins', sans-serif;
+  color: #ffff;
+  outline: none;
+  font-size: 1.5rem;
+}
+
+.input__text:focus {
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+}
+.form__button {
+  cursor: pointer;
+}
+.form__input{
  
-background: linear-gradient(359.94deg, rgba(0, 0, 0, 0.1) 5.09%, #191A15 20.6%, rgba(12, 12, 10, 0.1) 38.53%, rgba(0, 0, 0, 0.1) 54.26%, rgba(0, 0, 0, 0.1) 99.96%);
-backdrop-filter: blur(5px);
+  border-bottom: 1px solid #fff;
+}
+.main__right{
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+.title__cities{
+  font-weight: 200;
+  font-size: 1.7rem;
+}
+.weather__Cities{
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-bottom: 8rem;
+ border-bottom: 1px solid #fff ;
+}
+.wetaher__detail-information{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+
+}
+.wetaher__detail-information:not(:last-child){
+  margin-bottom: 2rem;
+}
+.weather__deatail{
+  padding-top: 2rem;
+}
+.weather__deatail-title{
+  font-size: 1.7rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+.weather__detail-info{
+  font-size: 1.6rem;
+  font-weight: 200;
+}
+.weather__detail-info--percentage{
+  font-size: 1.3rem;
+  font-weight: 200;
 }
