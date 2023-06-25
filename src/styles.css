@@ -38,8 +38,7 @@ h5 {
   padding-top: 3rem;
   gap: 0rem;
 }
-.header {
-}
+
 .header__title {
   font-weight: 400;
   font-size: 1.7rem;
@@ -192,4 +191,38 @@ h5 {
 }
 .weather__temp{
   font-size: 1.3rem;
+}
+
+
+/* media queris */
+@media(max-width:1024px){
+  html{
+    font-size: 56.25%;
+  }
+
+  
+  .main{
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+    
+  }
+  .main__left{
+    flex-direction: column;
+    justify-content: space-around;
+  
+    gap: 0rem;
+  }
+  .weather__header{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .weather__type{
+    display: block;
+  }
+ .weather__week-info{
+  padding-bottom: 0;
+ }
+  
 }
