@@ -39,24 +39,21 @@ let dayNames = [
 
 async function weather() {
   let apikey = 'da13c92adcb97e26e489d8a4eccc88b9';
-  let city = 'tehran';
+  let city = 'New York';
   const response = await fetch(
     `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`
   );
-  console.log(response);
   if (response.ok) {
     const data = await response.json();
     const temperature = Math.ceil((data.main.temp - 273.15).toFixed(2));
 
     const [weatherEl] = data.weather;
-    console.log(weatherEl.description);
 
     const icons = weatherEl.icon;
 
     const el3 = data.weather[0].icon;
     const wetaherClear = weatherEl.description;
 
-    console.log(wetaherClear.description);
     const wind = data.wind.speed;
     const humidity = data.main.humidity;
     const lat = data.coord.lat;
@@ -80,22 +77,68 @@ async function weather() {
     const year = date.getFullYear();
     const dateFullEl = document.querySelector('.weather__date');
     dateFullEl.textContent = `${hour}:${minute} - ${currentDay}, ${day} ${mountName} ${year}`;
-    console.log(weather.main);
-    if (weatherEl.main === 'Clear') {
+    console.log(weatherEl);
+    if (weatherEl.main === 'Clear' && weatherEl.id === 800) {
       const img = document.querySelector('.img__weather');
       img.src = '/clear.629910ed.png';
-      document.body.style.backgroundImage = 'url(/day-clear.2a7248a3.jpg)';
+      document.body.style.backgroundImage = 'url(/day-clear-beah.8755332a.jpg)';
     }
-    if (weatherEl.main === 'Clouds') {
+    if (
+      weatherEl.main === 'Clear' &&
+      weatherEl.id === 800 &&
+      weatherEl.iocn === '01n'
+    ) {
+      const img = document.querySelector('.img__weather');
+      img.src = '/night.422c4a31.png';
+      document.body.style.backgroundImage = 'url(/clear-night.474935b4.jpg)';
+    }
+    if (
+      weatherEl.main === 'Clouds' &&
+      weatherEl.id >= 801 &&
+      weatherEl.id <= 804
+    ) {
       const img = document.querySelector('.img__weather');
       img.src = '/cloudy-weather.ea7810a0.png';
     }
 
-    if (weatherEl.main === 'Rain') {
-      console.log('rain');
+    if (
+      weatherEl.main === 'Rain' &&
+      weatherEl.id >= 500 &&
+      weatherEl.id <= 531
+    ) {
       const img = document.querySelector('.img__weather');
       img.src = '/rain-iconpng.0d69055a.png';
-      document.body.style.backgroundImage = 'url(/clear-day.e8cb4363.JPG)';
+      document.body.style.backgroundImage = 'url(/rain-weather.cd3a6594.jpg)';
+    }
+    if (
+      weatherEl.main === 'Mist' &&
+      weatherEl.id >= 701 &&
+      weatherEl.id <= 781
+    ) {
+      const img = document.querySelector('.img__weather');
+      img.src = '/iconizer-weather.f6570355.svg';
+      document.body.style.backgroundImage = 'url(/foggy-forest-4.6d264000.jpg)';
+    }
+    if (
+      weatherEl.main === 'Snow' &&
+      weatherEl.id >= 600 &&
+      weatherEl.id <= 622
+    ) {
+      const img = document.querySelector('.img__weather');
+      img.src = '/snow-icon-color.2f365575.png';
+      // document.body.style.backgroundImage = 'url(/)';
+      document.body.style.backgroundImage =
+        'url(/nature-dark-snow-water-wallpaper.736d400a.jpg)';
+    }
+    if (
+      weatherEl.main === 'Thunderstorm' &&
+      weatherEl.id >= 200 &&
+      weatherEl.id <= 232
+    ) {
+      const img = document.querySelector('.img__weather');
+      img.src = '/thunderstorm-icon.2dd16e4c.png';
+      document.body.style.backgroundImage =
+        'url(/Thunderstorm-weather.4c552d96.jpg)';
     }
   }
 

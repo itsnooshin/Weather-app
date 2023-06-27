@@ -10,10 +10,15 @@ html {
 }
 body {
   background-image: url('../images/cloudy-weather.png');
-  /* background-image: url('../images/frank-mckenna-eXHeq48Z-Q4-unsplash.jpg'); */
   background-repeat: no-repeat;
+  /* background-image: url('../images/frank-mckenna-eXHeq48Z-Q4-unsplash.jpg'); */
   /* background-image: url('../images/day-clear.jpg'); */
   /* background-image: url('../images/clear-day.JPG'); */
+  /* background-image: url('../images/foggy-weather.jpg'); */
+  /* background-image: url('../images/foggy-forest-4.jpg'); */
+  /* background-image: url(../images/nature-dark-snow-water-wallpaper.jpg); */
+  /* background-image: url('../images/Thunderstorm-weather.jpg'); */
+  /* background-image: url('./icons/thunderstorm-icon.png'); */
   background-position: center;
   background-size: cover;
   height: 100vh;
