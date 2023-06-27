@@ -48,8 +48,8 @@ A simple weather application that provides current weather information for a giv
 
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
+- [x] Add background and change background on condition weather
+- [x] Add icon condition weather
 - [ ] Add Additional Templates w/ Examples
 - [ ] Add "components" document to easily copy & paste sections of the readme
 

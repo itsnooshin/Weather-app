@@ -32,6 +32,14 @@ h4,
 h5 {
   color: #fff;
 }
+.title__cities{
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  color: #fff;
+}
 .main {
   display: grid;
   grid-template-columns: 2fr 1fr;
