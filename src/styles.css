@@ -10,7 +10,10 @@ html {
 }
 body {
   background-image: url('../images/cloudy-weather.png');
+  /* background-image: url('../images/frank-mckenna-eXHeq48Z-Q4-unsplash.jpg'); */
   background-repeat: no-repeat;
+  /* background-image: url('../images/day-clear.jpg'); */
+  /* background-image: url('../images/clear-day.JPG'); */
   background-position: center;
   background-size: cover;
   height: 100vh;
@@ -125,104 +128,99 @@ h5 {
 .form__button {
   cursor: pointer;
 }
-.form__input{
- 
+.form__input {
   border-bottom: 1px solid #fff;
 }
-.main__right{
+.main__right {
   padding-left: 3rem;
   padding-right: 3rem;
 }
-.title__cities{
+.title__cities {
   font-weight: 200;
   font-size: 1.7rem;
 }
-.weather__Cities{
+.weather__Cities {
   padding-top: 2rem;
   display: flex;
   flex-direction: column;
   gap: 15px;
   padding-bottom: 8rem;
- border-bottom: 1px solid #fff ;
+  border-bottom: 1px solid #fff;
 }
-.wetaher__detail-information{
+.wetaher__detail-information {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.wetaher__detail-information:not(:last-child){
+.wetaher__detail-information:not(:last-child) {
   margin-bottom: 2rem;
 }
-.weather__deatail{
+.weather__deatail {
   padding-top: 2rem;
 }
-.weather__deatail-title{
+.weather__deatail-title {
   font-size: 1.7rem;
   margin-bottom: 2rem;
   font-weight: 600;
 }
-.weather__detail-info{
+.weather__detail-info {
   font-size: 1.6rem;
   font-weight: 200;
 }
-.weather__detail-info--percentage{
+.weather__detail-info--percentage {
   font-size: 1.3rem;
   font-weight: 200;
 }
-.waether__week img{
+.waether__week img {
   width: 30px;
 }
-.waether__week{
+.waether__week {
   padding-bottom: 4rem;
   padding-top: 3rem;
 }
-.weather__week-info{
+.weather__week-info {
   display: flex;
   align-items: center;
   gap: 50px;
 }
-.waether__week{
+.waether__week {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
-.day{
+.day {
   font-size: 1.4rem;
 }
-.weather__temp{
+.weather__temp {
   font-size: 1.3rem;
 }
 
-
 /* media queris */
-@media(max-width:1024px){
-  html{
+@media (max-width: 1024px) {
+  html {
     font-size: 56.25%;
   }
 
-  
-  .main{
+  .main {
     grid-template-columns: 1fr 1fr;
     height: 100vh;
-    
   }
-  .main__left{
+  .main__left {
     flex-direction: column;
     justify-content: space-around;
-  
+
     gap: 0rem;
   }
-  .weather__header{
+  .weather__header {
     display: flex;
     align-items: start;
     flex-direction: column;
     gap: 10px;
   }
-  .weather__type{
+  .weather__type {
     display: block;
   }
- .weather__week-info{
-  padding-bottom: 0;
- }
-  
+  .weather__week-info {
+    padding-bottom: 0;
+  }
 }

@@ -9,8 +9,6 @@ const cloundyEl = document.querySelector('.cloud-num');
 const windEl = document.querySelector('.wind-num');
 const rainEl = document.querySelector('.rain-num');
 const days = document.querySelectorAll('.day');
-const iconEl = document.querySelector('.img__weather');
-const iconPar = document.querySelector('.wha');
 
 // window.addEventListener('load', function () {
 //   weather();
@@ -38,63 +36,71 @@ let dayNames = [
   'Friday',
   'saturday',
 ];
+
 async function weather() {
   let apikey = 'da13c92adcb97e26e489d8a4eccc88b9';
-  let city = 'New York';
+  let city = 'tehran';
   const response = await fetch(
     `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`
   );
-  const data = await response.json();
-  const temperature = Math.ceil((data.main.temp - 273.15).toFixed(2));
-  // textcontent
+  console.log(response);
+  if (response.ok) {
+    const data = await response.json();
+    const temperature = Math.ceil((data.main.temp - 273.15).toFixed(2));
+
+    const [weatherEl] = data.weather;
+    console.log(weatherEl.description);
+
+    const icons = weatherEl.icon;
+
+    const el3 = data.weather[0].icon;
+    const wetaherClear = weatherEl.description;
+
+    console.log(wetaherClear.description);
+    const wind = data.wind.speed;
+    const humidity = data.main.humidity;
+    const lat = data.coord.lat;
+    const lon = data.coord.lon;
+    const cloudy = data.clouds.all;
+    weatherTemperature.textContent = temperature;
+    textCity.textContent = city;
+    cloundyEl.textContent = cloudy;
+    clear.textContent = wetaherClear;
+    windEl.textContent = wind;
+    humidityEl.textContent = humidity;
+    //  date display in background
+    const date = new Date();
+    const month = date.getMonth();
+    const mountName = monthNames[month];
+    const day = date.getDate();
+    const whatDay = date.getDay();
+    const currentDay = dayNames[whatDay];
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    const year = date.getFullYear();
+    const dateFullEl = document.querySelector('.weather__date');
+    dateFullEl.textContent = `${hour}:${minute} - ${currentDay}, ${day} ${mountName} ${year}`;
+    console.log(weather.main);
+    if (weatherEl.main === 'Clear') {
+      const img = document.querySelector('.img__weather');
+      img.src = '/clear.629910ed.png';
+      document.body.style.backgroundImage = 'url(/day-clear.2a7248a3.jpg)';
+    }
+    if (weatherEl.main === 'Clouds') {
+      const img = document.querySelector('.img__weather');
+      img.src = '/cloudy-weather.ea7810a0.png';
+    }
+
+    if (weatherEl.main === 'Rain') {
+      console.log('rain');
+      const img = document.querySelector('.img__weather');
+      img.src = '/rain-iconpng.0d69055a.png';
+      document.body.style.backgroundImage = 'url(/clear-day.e8cb4363.JPG)';
+    }
+  }
+
   // console.log(data); // data for weather now
-
-  const [weatherEl] = data.weather;
-  // console.log(weatherEl); // dat for inormation weather
-  const wearherCode = weatherEl.id;
-  // console.log(wearherCode); // 701
-  // <img
-  // <img src="" alt="" class="img__weather"/>
-  const icons = weatherEl.icon;
-  // const iconPath = `../images/icons/04d.png`;
-  //   const imgElement = document.getElementById('img__weather');
-  // iconEl.src = `../images/icons/01d.png`
-  // iconPar.innerHTML = `<img src="../images/icons/01d.png" alt="" class="img__weather"/>`
-  // if (wearherCode >= 701 && wearherCode < 783) {
-
-  //   console.log(imgElement);
-  // }
-  // const {el} = data.weather;
-  // console.log(el); cl
-  // console.log();
-  const el3 = data.weather[0].icon;
-  console.log(el3);
-  // iconEl.src = 
-  iconPar.innerHTML = `<img  src ="../images/icons/${el3}.png ">`;;
-  const wetaherClear = weatherEl.main;
-  const wind = data.wind.speed;
-  const humidity = data.main.humidity;
-  const lat = data.coord.lat;
-  const lon = data.coord.lon;
-  const cloudy = data.clouds.all;
-  weatherTemperature.textContent = temperature;
-  textCity.textContent = city;
-  cloundyEl.textContent = cloudy;
-  clear.textContent = wetaherClear;
-  windEl.textContent = wind;
-  humidityEl.textContent = humidity;
-  //  date display in background
-  const date = new Date();
-  const month = date.getMonth();
-  const mountName = monthNames[month];
-  const day = date.getDate();
-  const whatDay = date.getDay();
-  const currentDay = dayNames[whatDay];
-  const hour = date.getHours();
-  const minute = date.getMinutes();
-  const year = date.getFullYear();
-  const dateFullEl = document.querySelector('.weather__date');
-  dateFullEl.textContent = `${hour}:${minute} - ${currentDay}, ${day} ${mountName} ${year}`;
+  //  snow , rain , Drizzle , Thunderstorm , Clear	, Clouds
 }
 
 weather();
