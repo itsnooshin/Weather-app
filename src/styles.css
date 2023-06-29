@@ -207,7 +207,28 @@ h5 {
 .weather__temp {
   font-size: 1.3rem;
 }
+.weather__temp__minmax{
+  
+  display: flex;
+  gap: 10px;
+}
 
+
+.waether__week{
+  display: flex;
+  align-items: center;
+}
+.day{
+  font-size: 1.7rem;
+}
+.weather__temp-max{
+  font-weight: 700;
+  font-size: 1.5rem;
+
+}
+.weather__temp-min{
+  font-size: 1.5rem;
+}
 /* media queris */
 @media (max-width: 1024px) {
   html {

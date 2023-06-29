@@ -37,21 +37,17 @@ let dayNames = [
 
 async function weather() {
   let apikey = 'da13c92adcb97e26e489d8a4eccc88b9';
-  let city = 'Tehran';
+  let city = 'New York';
   const response = await fetch(
     `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`
   );
   if (response.ok) {
     const data = await response.json();
     const temperature = Math.ceil((data.main.temp - 273.15).toFixed(2));
-
     const [weatherEl] = data.weather;
-
     const icons = weatherEl.icon;
-
     const el3 = data.weather[0].icon;
     const wetaherClear = weatherEl.description;
-
     const wind = data.wind.speed;
     const humidity = data.main.humidity;
     const lat = data.coord.lat;
@@ -63,7 +59,6 @@ async function weather() {
     clear.textContent = wetaherClear;
     windEl.textContent = wind;
     humidityEl.textContent = humidity;
-    //  date display in background
     const date = new Date();
     const month = date.getMonth();
     const mountName = monthNames[month];
@@ -75,7 +70,6 @@ async function weather() {
     const year = date.getFullYear();
     const dateFullEl = document.querySelector('.weather__date');
     dateFullEl.textContent = `${hour}:${minute} - ${currentDay}, ${day} ${mountName} ${year}`;
-    console.log(weatherEl);
     if (weatherEl.main === 'Clear' && weatherEl.id === 800) {
       const img = document.querySelector('.img__weather');
       img.src = '/clear.629910ed.png';
@@ -84,7 +78,7 @@ async function weather() {
     if (
       weatherEl.main === 'Clear' &&
       weatherEl.id === 800 &&
-      weatherEl.iocn === '01n'
+      weatherEl.icon === '01n'
     ) {
       const img = document.querySelector('.img__weather');
       img.src = '/night.422c4a31.png';
@@ -109,10 +103,18 @@ async function weather() {
       document.body.style.backgroundImage = 'url(/rain-weather.cd3a6594.jpg)';
     }
     if (
-      weatherEl.main === 'Mist' &&
-      weatherEl.id >= 701 &&
-      weatherEl.id <= 781
+      weatherEl.main === 'Mist' ||
+      weatherEl.main === 'Haze' ||
+      weatherEl.main === 'Smoke' ||
+      weatherEl.main === 'Dust' ||
+      weatherEl.main === 'Fog' ||
+      weatherEl.main === 'Ash' ||
+      weatherEl.main === 'Squall' ||
+      (weatherEl.main === 'Tornado' &&
+        weatherEl.id >= 701 &&
+        weatherEl.id <= 781)
     ) {
+      // console.log('k');
       const img = document.querySelector('.img__weather');
       img.src = '/iconizer-weather.f6570355.svg';
       document.body.style.backgroundImage = 'url(/foggy-forest-4.6d264000.jpg)';
@@ -124,7 +126,6 @@ async function weather() {
     ) {
       const img = document.querySelector('.img__weather');
       img.src = '/snow-icon-color.2f365575.png';
-      // document.body.style.backgroundImage = 'url(/)';
       document.body.style.backgroundImage =
         'url(/nature-dark-snow-water-wallpaper.736d400a.jpg)';
     }
@@ -149,19 +150,62 @@ weather();
 
 async function getAllweather(lat, lon) {
   const res = await fetch(
-    `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=da13c92adcb97e26e489d8a4eccc88b9`
+    `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=da13c92adcb97e26e489d8a4eccc88b9&units=metric`
   );
   const data = await res.json();
-  console.log(data);
-  const [list] = data.list;
-  const date = new Date();
 
-  let elmentOfpop = list.pop;
-  console.log(elmentOfpop);
-  rainEl.textContent = elmentOfpop;
+  const forecastList = data.list;
+  const currentDate = new Date();
+  // Filter the forecast data for the next 5 days
+  const nextDays = forecastList.filter(item => {
+    const itemDate = new Date(item.dt * 1000);
+    let el = new Date(itemDate);
+
+    if (itemDate.getDate() !== currentDate.getDate()) {
+      const day = new Date(itemDate);
+      return itemDate.getDate();
+    }
+  });
+  
+  nextDays.forEach(item => {
+    const itemdate = new Date(item.dt * 1000);
+    const newdel = itemdate.toString().slice(0, 15);
+    // console.log(newdel, item.main.temp);
+  });
+
+  const obj = {};
+
+  for (const [key, value] of Object.entries(forecastList)) {
+    const nextDays = forecastList.filter(item => {
+      // console.log(item.weather);
+      const itemDate = new Date(item.dt * 1000);
+      const newdel = itemDate.toString().slice(0, 15);
+      if (itemDate.getDate() !== currentDate.getDate()) {
+    
+        let temp = item.main.temp;
+        // console.log(temp);
+
+        if (!obj[newdel]) {
+          obj[newdel] = {
+            min: temp,
+            max: temp,
+          };
+        } else {
+          obj[newdel].min = Math.min(obj[newdel].min, temp);
+          // console.log(temp, itemDate);
+          obj[newdel].max = Math.max(obj[newdel].max, temp);
+        }
+
+        return itemDate.getDate();
+      }
+    });
+  }
+  // console.log(obj);
+  for (const key in obj) {
+    const { min, max } = obj[key];
+    // console.log(key, min, max);
+  }
 }
-
-weather();
 
 searchWeather.addEventListener('click', function () {
   let apikey = 'da13c92adcb97e26e489d8a4eccc88b9';
@@ -232,7 +276,6 @@ searchWeather.addEventListener('click', function () {
     const year = date.getFullYear();
     const dateFullEl = document.querySelector('.weather__date');
     dateFullEl.textContent = `${hour}:${minute} - ${currentDay}, ${day} ${mountName} ${year}`;
-    console.log(weatherEl);
 
     if (weatherEl.main === 'Clear' && weatherEl.id === 800) {
       const img = document.querySelector('.img__weather');
@@ -242,11 +285,12 @@ searchWeather.addEventListener('click', function () {
     if (
       weatherEl.main === 'Clear' &&
       weatherEl.id === 800 &&
-      weatherEl.iocn === '01n'
+      weatherEl.icon === '01n'
     ) {
       const img = document.querySelector('.img__weather');
       img.src = '/night.422c4a31.png';
       document.body.style.backgroundImage = 'url(/clear-night.474935b4.jpg)';
+      // console.log();
     }
     if (
       weatherEl.main === 'Clouds' &&
@@ -268,10 +312,13 @@ searchWeather.addEventListener('click', function () {
       document.body.style.backgroundImage = 'url(/rain-weather.cd3a6594.jpg)';
     }
     if (
-      weatherEl.main === 'Mist' &&
-      weatherEl.id >= 701 &&
-      weatherEl.id <= 781
+      weatherEl.main === 'Mist' ||
+      weatherEl.main === 'Smoke' ||
+      weatherEl.main === 'Haze'
+      // weatherEl.id >= 701 &&
+      // weatherEl.id <= 781
     ) {
+      console.log('hh');
       const img = document.querySelector('.img__weather');
       img.src = '/iconizer-weather.f6570355.svg';
       document.body.style.backgroundImage = 'url(/foggy-forest-4.6d264000.jpg)';
@@ -306,7 +353,7 @@ searchWeather.addEventListener('click', function () {
       `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=da13c92adcb97e26e489d8a4eccc88b9`
     );
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     const list = data.list;
     const date = new Date();
     // console.log(date.getDay());
@@ -319,10 +366,13 @@ searchWeather.addEventListener('click', function () {
       const day = date.getDay();
       const weeek = dayWeek[day];
       // console.log(weeek);
-      days.forEach(day => {
-        // day.textContent = weeek;
-        // console.log(day.textContent = weeek);
-      });
+      // days.forEach(day => {
+      //   // day.textContent = weeek;
+      //   // console.log(day.textContent = weeek);
+      // console.log(list);
+
+      // // });
+      // console.log(list);
     });
 
     const elmentOfpop = list.pop;
@@ -336,8 +386,8 @@ searchWeather.addEventListener('click', function () {
   weather();
 });
 
-citiesPrev.forEach(function (btn) {
-  btn.addEventListener('click', function () {
-    console.log(btn.textContent);
-  });
-});
+// citiesPrev.forEach(function (btn) {
+//   btn.addEventListener('click', function () {
+//     console.log(btn.textContent);
+//   });
+// });
