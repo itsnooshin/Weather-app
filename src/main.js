@@ -163,18 +163,14 @@ async function getAllweather(lat, lon) {
   const nextDays = forecastList.filter(item => {
     const itemDate = new Date(item.dt * 1000);
     let el = new Date(itemDate);
-    // console.log(el);
-    //  console.log(el);
     if (itemDate.getDate() !== currentDate.getDate()) {
       const day = new Date(itemDate);
-      // console.log(itemDate.getDate(), currentDate.getDate());
       return itemDate.getDate();
     }
   });
 
   nextDays.forEach(item => {
     const itemdate = new Date(item.dt * 1000);
-
     const newdel = itemdate.toString().slice(0, 15);
   });
 
@@ -198,7 +194,6 @@ async function getAllweather(lat, lon) {
           };
         } else {
           obj[newdel].min = Math.round(Math.min(obj[newdel].min, temp));
-          // console.log(temp, itemDate);
           obj[newdel].max = Math.round(Math.max(obj[newdel].max, temp));
           obj[newdel].image = weather;
         }
@@ -207,9 +202,7 @@ async function getAllweather(lat, lon) {
     });
   }
 
-  console.log(obj);
   const element = Object.entries(obj);
-
   for (let i = 0; i < element.length; i++) {
     const el = element[i];
     const day = days[i];
@@ -221,9 +214,6 @@ async function getAllweather(lat, lon) {
     mint.textContent = el[1].min;
     maxt.textContent = el[1].max;
     day.textContent = wwkOfday;
-    // console.log(el, el[1].image);
-    // console.log(el[1].image.main);
-    // console.log(imges[i].src);
     if (el[1].image.main === 'Clear') {
       imges[i].src = '/clear.629910ed.png';
     }
@@ -234,8 +224,6 @@ async function getAllweather(lat, lon) {
       console.log(imges[i]);
       imges[i].src = '/rain-iconpng.0d69055a.png';
     }
-
-    // 'Clouds' , 'Rain' , 'Rain' , Clear
   }
 }
 
@@ -258,7 +246,6 @@ searchWeather.addEventListener('click', function () {
     const data = await response.json();
     const temperature = Math.ceil((data.main.temp - 273.15).toFixed(2));
     weatherTemperature.textContent = temperature;
-
     const [weatherEl] = data.weather;
     const wetaherClear = weatherEl.main;
     const wind = data.wind.speed;
@@ -266,7 +253,6 @@ searchWeather.addEventListener('click', function () {
     const lat = data.coord.lat;
     const lon = data.coord.lon;
     const cloudy = data.clouds.all;
-
     cloundyEl.textContent = cloudy;
     clear.textContent = wetaherClear;
     windEl.textContent = wind;
@@ -351,27 +337,84 @@ searchWeather.addEventListener('click', function () {
 
     getAllweather(lat, lon);
   }
-  // https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${apiKey}&cnt=5&units=metric
   async function getAllweather(lat, lon) {
+    
+    let YOUR_API_KEY = 'da13c92adcb97e26e489d8a4eccc88b9';
     const res = await fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=da13c92adcb97e26e489d8a4eccc88b9`
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${YOUR_API_KEY}&units=metric`
     );
     const data = await res.json();
-    // console.log(data);
-    const list = data.list;
-    const date = new Date();
-    // console.log(date.getDay());
-    const listArr = Object.values(list);
-
-    listArr.forEach(list => {
-      const dayList = list.dt_txt;
-      const data1 = dayList.split(' ')[0];
-      const date = new Date(data1);
-      const day = date.getDay();
-      const weeek = dayWeek[day];
+    console.log(data);
+    const forecastList = data.list;
+    const currentDate = new Date();
+    // Filter the forecast data for the next 5 days
+    const nextDays = forecastList.filter(item => {
+      const itemDate = new Date(item.dt * 1000);
+      let el = new Date(itemDate);
+      if (itemDate.getDate() !== currentDate.getDate()) {
+        const day = new Date(itemDate);
+        return itemDate.getDate();
+      }
     });
+  
+    nextDays.forEach(item => {
+      const itemdate = new Date(item.dt * 1000);
+      const newdel = itemdate.toString().slice(0, 15);
+    });
+  
+    const obj = {};
+  
+    for (const [key, value] of Object.entries(forecastList)) {
+      const nextDays = forecastList.filter(item => {
+        // console.log(item.weather);
+        const itemDate = new Date(item.dt * 1000);
+        const newdel = itemDate.toString().slice(0, 15);
+        let temp = item.main.temp;
+  
+        if (itemDate.getDate() !== currentDate.getDate()) {
+          let weather = item.weather[0];
+  
+          if (!obj[newdel]) {
+            obj[newdel] = {
+              min: temp,
+              max: temp,
+              image: weather,
+            };
+          } else {
+            obj[newdel].min = Math.round(Math.min(obj[newdel].min, temp));
+            obj[newdel].max = Math.round(Math.max(obj[newdel].max, temp));
+            obj[newdel].image = weather;
+          }
+          return itemDate.getDate();
+        }
+      });
+    }
+  
+    const element = Object.entries(obj);
+    for (let i = 0; i < element.length; i++) {
+      const el = element[i];
+      const day = days[i];
+      const newel = new Date(el[0]);
+      const option = { weekday: 'short' };
+      const wwkOfday = newel.toLocaleDateString('en-US', option);
+      const mint = minTemp[i];
+      const maxt = maxTemp[i];
+      mint.textContent = el[1].min;
+      maxt.textContent = el[1].max;
+      day.textContent = wwkOfday;
+      if (el[1].image.main === 'Clear') {
+        imges[i].src = '/clear.629910ed.png';
+      }
+      if (el[1].image.main === 'Clouds') {
+        imges[i].src = '/cloudy-weather.ea7810a0.png';
+      }
+      if (el[1].image.main === 'Rain') {
+        console.log(imges[i]);
+        imges[i].src = '/rain-iconpng.0d69055a.png';
+      }
+    }
 
-    const elmentOfpop = list.pop;
+    
   }
 
   weather();
