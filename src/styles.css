@@ -194,7 +194,8 @@ h5 {
 .weather__week-info {
   display: flex;
   align-items: center;
-  gap: 50px;
+ 
+  gap: 20px;
 }
 .waether__week {
   display: flex;
@@ -216,7 +217,16 @@ h5 {
 
 .waether__week{
   display: flex;
-  align-items: center;
+  /* background-color: #191a15; */
+ 
+  
+}
+.weather__temp__minmax{
+  /* background-color: red; */
+}
+.weather__week-info{
+  /* background-color: red; */
+  /* display: flex; */
 }
 .day{
   font-size: 1.7rem;
@@ -228,6 +238,13 @@ h5 {
 }
 .weather__temp-min{
   font-size: 1.5rem;
+}
+.weather__week-info{
+  /* background-color: red; */
+}
+.waether__week{
+  /* background-color: red; */
+  display: flex;
 }
 /* media queris */
 @media (max-width: 1024px) {
