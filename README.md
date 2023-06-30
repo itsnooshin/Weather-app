@@ -3,7 +3,7 @@
 A simple weather application that provides current weather information for a given location.
 
 
-![](./images/weather-app.png)
+![](./images/weather-design.png)
 
 ## Features
 
