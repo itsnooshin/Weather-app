@@ -320,7 +320,6 @@ searchWeather.addEventListener('click', function () {
     ) {
       const img = document.querySelector('.img__weather');
       img.src = '/snow-icon-color.2f365575.png';
-      // document.body.style.backgroundImage = 'url(/)';
       document.body.style.backgroundImage =
         'url(/nature-dark-snow-water-wallpaper.736d400a.jpg)';
     }
@@ -608,6 +607,10 @@ citiesPrev.forEach(city => {
         if (el[1].image.main === 'Rain') {
           console.log(imges[i]);
           imges[i].src = '/rain-iconpng.0d69055a.png';
+        }
+        if (el[1].image.main === 'Thunderstorm') {
+          console.log(imges[i]);
+          imges[i].src = '/thunderstorm-icon.2dd16e4c.png';
         }
       }
     }
