@@ -110,6 +110,8 @@ const weatherCondition = function (weatherEl) {
   }
 };
 
+
+// the default weather city 
 const informationWeather = function (weatherEl, city, data) {
   const temperature = Math.ceil((data.main.temp - 273.15).toFixed(2));
   console.log(temperature);
@@ -225,6 +227,11 @@ async function getAllweather(lat, lon) {
     }
   }
 }
+
+
+
+
+// When the user clicks on a search button
 
 searchWeather.addEventListener('click', function (event) {
   let apikey = 'da13c92adcb97e26e489d8a4eccc88b9';
@@ -345,6 +352,9 @@ searchWeather.addEventListener('click', function (event) {
   weather();
 });
 
+
+
+// When the user clicks on a city recommendation
 citiesPrev.forEach(city => {
   city.addEventListener('click', function (e) {
     let YOUR_API_KEY = 'da13c92adcb97e26e489d8a4eccc88b9';
