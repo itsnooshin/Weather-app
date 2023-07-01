@@ -5,12 +5,9 @@ A simple weather application that provides current weather information for a giv
 
 ![](./images/weather-design.png)
 
-## Features
 
-- Get current weather conditions, including temperature, humidity, and wind speed.
-- Search for weather by city name.
-- Automatically detects the user's location for quick weather updates.
-- Supports both metric and imperial units for temperature and wind speed.
+
+
 
 ## Installation
 
@@ -46,13 +43,16 @@ A simple weather application that provides current weather information for a giv
 - parcel NPM packge mangager
 
 
-## Roadmap
+## Features
 
-- [x] Add different backgrounds based on the weather conditions.
-- [x] Add weather icons corresponding to the current weather conditions.
-- [x] Display the maximum and minimum temperature for the next 5 days.
-- [x] Provide weather information for 4 different cities.
-- [x] Include humidity, wind, rainfall, and cloudiness data for the current city.
+- Get current weather conditions, including temperature, humidity, and wind speed.
+- Search for weather by city name.
+-  Add different backgrounds based on the weather conditions.
+-  Add weather icons corresponding to the current weather conditions.
+-  Display the maximum and minimum temperature for the next 5 days.
+-  Provide weather information for 4 different cities.
+
+
 
 
 ## Author
