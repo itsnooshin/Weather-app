@@ -53,8 +53,6 @@ A simple weather application that provides current weather information for a giv
 -  Provide weather information for 4 different cities.
 
 
-
-
 ## Author
 - Twitter - [@itsnooshindev](https://www.twitter.com/itsnooshindev)
 
