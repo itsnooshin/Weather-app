@@ -75,6 +75,7 @@ const weatherCondition = function (weatherEl) {
     weatherEl.id <= 804
   ) {
     img.src = '/cloudy-weather.ea7810a0.png';
+    document.body.style.backgroundImage = 'url(/cloudy-weather.38153706.png)';
   }
 
   if (weatherEl.main === 'Rain' && weatherEl.id >= 500 && weatherEl.id <= 531) {
@@ -139,7 +140,8 @@ async function weather(weatherEl) {
   if (response.ok) {
     textCity.textContent = city;
     const data = await response.json();
-
+    const temperature = Math.ceil((data.main.temp - 273.15).toFixed(2));
+    weatherTemperature.textContent = temperature;
     const [weatherEl] = data.weather;
     const icons = weatherEl.icon;
     const el3 = data.weather[0].icon;
@@ -249,9 +251,11 @@ searchWeather.addEventListener('click', function (event) {
       if (response.ok) {
         textCity.textContent = el2;
         const data = await response.json();
+
         const [weatherEl] = data.weather;
         const lat = data.coord.lat;
         const lon = data.coord.lon;
+
         informationWeather(weatherEl, city, data);
         dateToday();
         weatherCondition(weatherEl);
@@ -370,11 +374,27 @@ citiesPrev.forEach(city => {
       try {
         if (response.ok) {
           textCity.textContent = el2;
+
           const data = await response.json();
           const [weatherEl] = data.weather;
+
+          const tempcity = Math.round(Number(data.main.temp));
+          weatherTemperature.textContent = tempcity;
           const lat = data.coord.lat;
           const lon = data.coord.lon;
-          informationWeather(weatherEl, city, data);
+          // informationWeather(weatherEl, city, data);
+          const [weatherElCity] = data.weather;
+          const icons = weatherElCity.icon;
+          const el3 = data.weather[0].icon;
+          const wetaherClear = weatherEl.description;
+          console.log(weatherEl);
+          const wind = data.wind.speed;
+          const humidity = data.main.humidity;
+          const cloudy = data.clouds.all;
+          cloundyEl.textContent = cloudy;
+          clear.textContent = wetaherClear;
+          windEl.textContent = wind;
+          humidityEl.textContent = humidity;
           dateToday();
           weatherCondition(weatherEl);
           getAllweather(lat, lon);

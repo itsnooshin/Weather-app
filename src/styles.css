@@ -11,14 +11,6 @@ html {
 body {
   background-image: url('../images/cloudy-weather.png');
   background-repeat: no-repeat;
-  /* background-image: url('../images/frank-mckenna-eXHeq48Z-Q4-unsplash.jpg'); */
-  /* background-image: url('../images/day-clear.jpg'); */
-  /* background-image: url('../images/clear-day.JPG'); */
-  /* background-image: url('../images/foggy-weather.jpg'); */
-  /* background-image: url('../images/foggy-forest-4.jpg'); */
-  /* background-image: url(../images/nature-dark-snow-water-wallpaper.jpg); */
-  /* background-image: url('../images/Thunderstorm-weather.jpg'); */
-  /* background-image: url('./icons/thunderstorm-icon.png'); */
   background-position: center;
   background-size: cover;
   height: 100vh;
@@ -32,7 +24,7 @@ h4,
 h5 {
   color: #fff;
 }
-.title__cities{
+.title__cities {
   border: none;
   background-color: transparent;
   font-family: inherit;
@@ -67,9 +59,7 @@ h5 {
   display: flex;
   align-items: center;
   gap: 30px;
-  /* flex-direction: column; */
   flex-direction: row;
-  /* padding-bottom: 10rem; */
 }
 .weather__type {
   display: flex;
@@ -194,7 +184,7 @@ h5 {
 .weather__week-info {
   display: flex;
   align-items: center;
- 
+
   gap: 20px;
 }
 .waether__week {
@@ -208,62 +198,114 @@ h5 {
 .weather__temp {
   font-size: 1.3rem;
 }
-.weather__temp__minmax{
-  
+.weather__temp__minmax {
   display: flex;
   gap: 10px;
 }
 
-
-.waether__week{
-  display: flex; 
+.waether__week {
+  display: flex;
 }
 
-.day{
+.day {
   font-size: 1.7rem;
 }
-.weather__temp-max{
+.weather__temp-max {
   font-weight: 700;
   font-size: 1.5rem;
-
 }
-.weather__temp-min{
+.weather__temp-min {
   font-size: 1.5rem;
 }
 
-.waether__week{
- 
+.waether__week {
   display: flex;
 }
 /* media queris */
 @media (max-width: 1024px) {
-  body{
-    background-color: red;
+  body {
+    height: 100%;
   }
   html {
     font-size: 56.25%;
   }
+  .weather__header {
+    align-items: center;
+    justify-content: center;
+  }
+  .weather__week-info {
+    align-items: center;
+    justify-content: center;
+  }
 
   .main {
-    grid-template-columns: 1fr 1fr;
-    height: 100vh;
+    grid-template-columns: 1fr;
+    /* height: 100vh; */
   }
   .main__left {
     flex-direction: column;
     justify-content: space-around;
-
     gap: 0rem;
   }
-  .weather__header {
-    display: flex;
-    align-items: start;
-    flex-direction: column;
-    gap: 10px;
-  }
+
   .weather__type {
     display: block;
   }
   .weather__week-info {
     padding-bottom: 0;
+  }
+}
+@media (max-width: 600px) {
+  html {
+    font-size: 50%;
+  }
+  /* body{
+    height: 200%;
+  } */
+  .weather__header-temporty {
+    font-size: 5rem;
+  }
+  .weather__city {
+    font-size: 3rem;
+  }
+  .weather__type .img__weather {
+    width: 50%;
+  }
+  .weather__header {
+    max-width: 700px;
+   margin: 2rem 2rem;
+   
+  }
+  .main__left {
+    padding-left: 1rem;
+  }
+  .header__title {
+    padding-left: 3rem;
+    margin-bottom: 2rem;
+  }
+  .weather__week-info {
+     gap: 12px;
+    max-width: 400px;
+  }
+ 
+  .day {
+    font-size: 1.4rem;
+  }
+  .waether__week .img__weather-week {
+    width: 30%;
+  }
+  .weather__temp-max{
+    font-size: 1.3rem;
+  }
+  .weather__temp-min{
+    font-size: 1.3rem;
+  }
+  .weather__temp__minmax{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .main__right{
+    padding-bottom: 3rem;
   }
 }
