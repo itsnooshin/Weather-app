@@ -136,7 +136,7 @@ async function weather(weatherEl) {
   let apikey = 'da13c92adcb97e26e489d8a4eccc88b9';
   let city = 'Tehran';
   const response = await fetch(
-    `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`
   );
   if (response.ok) {
     textCity.textContent = city;
@@ -156,7 +156,6 @@ async function weather(weatherEl) {
 }
 
 weather();
-
 
 async function getAllweather(lat, lon) {
   let YOUR_API_KEY = 'da13c92adcb97e26e489d8a4eccc88b9';
@@ -246,7 +245,7 @@ searchWeather.addEventListener('click', function (event) {
 
   async function weather(weatherEl) {
     const response = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`
     );
 
     try {
@@ -371,7 +370,7 @@ citiesPrev.forEach(city => {
 
     async function weatherElbtn() {
       const response = await fetch(
-        `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${YOUR_API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${YOUR_API_KEY}`
       );
       try {
         if (response.ok) {
