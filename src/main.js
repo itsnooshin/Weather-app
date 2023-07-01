@@ -110,17 +110,15 @@ const weatherCondition = function (weatherEl) {
   }
 };
 
-
-// the default weather city 
+// the default weather city
 const informationWeather = function (weatherEl, city, data) {
   const temperature = Math.ceil((data.main.temp - 273.15).toFixed(2));
-  console.log(temperature);
   weatherTemperature.textContent = temperature;
   const lat = data.coord.lat;
+
   const lon = data.coord.lon;
   const [weatherElCity] = data.weather;
   const icons = weatherElCity.icon;
-  console.log(icons);
   const el3 = data.weather[0].icon;
   const wetaherClear = weatherEl.description;
   const wind = data.wind.speed;
@@ -162,10 +160,14 @@ async function getAllweather(lat, lon) {
     `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${YOUR_API_KEY}&units=metric`
   );
   const data = await res.json();
+  // console.log(data.pop);
   const forecastList = data.list;
   const currentDate = new Date();
   // Filter the forecast data for the next 5 days
   const nextDays = forecastList.filter(item => {
+    // pop
+    rainEl.textContent = item.pop;
+
     const itemDate = new Date(item.dt * 1000);
     let el = new Date(itemDate);
     if (itemDate.getDate() !== currentDate.getDate()) {
@@ -181,7 +183,6 @@ async function getAllweather(lat, lon) {
 
   for (const [key, value] of Object.entries(forecastList)) {
     const nextDays = forecastList.filter(item => {
-      // console.log(item.weather);
       const itemDate = new Date(item.dt * 1000);
       const newdel = itemDate.toString().slice(0, 15);
       let temp = item.main.temp;
@@ -227,9 +228,6 @@ async function getAllweather(lat, lon) {
     }
   }
 }
-
-
-
 
 // When the user clicks on a search button
 
@@ -280,6 +278,7 @@ searchWeather.addEventListener('click', function (event) {
         const currentDate = new Date();
         // Filter the forecast data for the next 5 days
         const nextDays = forecastList.filter(item => {
+          rainEl.textContent = item.pop;
           const itemDate = new Date(item.dt * 1000);
           let el = new Date(itemDate);
           if (itemDate.getDate() !== currentDate.getDate()) {
@@ -297,7 +296,6 @@ searchWeather.addEventListener('click', function (event) {
 
         for (const [key, value] of Object.entries(forecastList)) {
           const nextDays = forecastList.filter(item => {
-            // console.log(item.weather);
             const itemDate = new Date(item.dt * 1000);
             const newdel = itemDate.toString().slice(0, 15);
             let temp = item.main.temp;
@@ -352,8 +350,6 @@ searchWeather.addEventListener('click', function (event) {
   weather();
 });
 
-
-
 // When the user clicks on a city recommendation
 citiesPrev.forEach(city => {
   city.addEventListener('click', function (e) {
@@ -400,6 +396,7 @@ citiesPrev.forEach(city => {
           const currentDate = new Date();
           // Filter the forecast data for the next 5 days
           const nextDays = forecastList.filter(item => {
+            rainEl.textContent = item.pop;
             const itemDate = new Date(item.dt * 1000);
             let el = new Date(itemDate);
             if (itemDate.getDate() !== currentDate.getDate()) {
