@@ -48,10 +48,11 @@ A simple weather application that provides current weather information for a giv
 
 ## Roadmap
 
-- [x] Add background and change background on condition weather
-- [x] Add icon condition weather
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
+- [x] Add different backgrounds based on the weather conditions.
+- [x] Add weather icons corresponding to the current weather conditions.
+- [x] Display the maximum and minimum temperature for the next 5 days.
+- [x] Provide weather information for 4 different cities.
+- [x] Include humidity, wind, rainfall, and cloudiness data for the current city.
 
 
 ## Author

@@ -70,8 +70,8 @@ async function weather() {
     const day = date.getDate();
     const whatDay = date.getDay();
     const currentDay = dayNames[whatDay];
-    const hour = date.getHours();
-    const minute = date.getMinutes();
+    const hour = date.getHours().toString().padStart(2, '0');
+    const minute = date.getMinutes().toString().padStart(2, '0');
     const year = date.getFullYear();
     const dateFullEl = document.querySelector('.weather__date');
     dateFullEl.textContent = `${hour}:${minute} - ${currentDay}, ${day} ${mountName} ${year}`;
@@ -172,6 +172,7 @@ async function getAllweather(lat, lon) {
   nextDays.forEach(item => {
     const itemdate = new Date(item.dt * 1000);
     const newdel = itemdate.toString().slice(0, 15);
+    console.log(newdel);
   });
 
   const obj = {};
@@ -185,7 +186,7 @@ async function getAllweather(lat, lon) {
 
       if (itemDate.getDate() !== currentDate.getDate()) {
         let weather = item.weather[0];
-
+        console.log(value);
         if (!obj[newdel]) {
           obj[newdel] = {
             min: temp,
@@ -207,6 +208,7 @@ async function getAllweather(lat, lon) {
     const el = element[i];
     const day = days[i];
     const newel = new Date(el[0]);
+    console.log(day);
     const option = { weekday: 'short' };
     const wwkOfday = newel.toLocaleDateString('en-US', option);
     const mint = minTemp[i];
@@ -227,120 +229,148 @@ async function getAllweather(lat, lon) {
   }
 }
 
-searchWeather.addEventListener('click', function () {
+searchWeather.addEventListener('click', function (event) {
   let apikey = 'da13c92adcb97e26e489d8a4eccc88b9';
   const cityel = inputCityWeather.value;
   const el2 = cityel
     .split(' ')
     .map(el => el[0].toUpperCase() + el.slice(1))
     .join(' ');
-  textCity.textContent = el2;
-
   let city = el2;
 
   async function weather() {
     const response = await fetch(
       `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`
     );
-    // console.log(response);
-    const data = await response.json();
-    const temperature = Math.ceil((data.main.temp - 273.15).toFixed(2));
-    weatherTemperature.textContent = temperature;
-    const [weatherEl] = data.weather;
-    const wetaherClear = weatherEl.main;
-    const wind = data.wind.speed;
-    const humidity = data.main.humidity;
-    const lat = data.coord.lat;
-    const lon = data.coord.lon;
-    const cloudy = data.clouds.all;
-    cloundyEl.textContent = cloudy;
-    clear.textContent = wetaherClear;
-    windEl.textContent = wind;
-    humidityEl.textContent = humidity;
-    const date = new Date();
-    const month = date.getMonth();
-    const mountName = monthNames[month];
 
-    const day = date.getDate();
-    const whatDay = date.getDay();
-    const currentDay = dayNames[whatDay];
-    const hour = date.getHours();
-    const minute = date.getMinutes();
-    const year = date.getFullYear();
-    const dateFullEl = document.querySelector('.weather__date');
-    dateFullEl.textContent = `${hour}:${minute} - ${currentDay}, ${day} ${mountName} ${year}`;
+    try {
+      if (response.ok) {
+        textCity.textContent = el2;
+        const data = await response.json();
+        const temperature = Math.ceil((data.main.temp - 273.15).toFixed(2));
+        weatherTemperature.textContent = temperature;
+        const [weatherEl] = data.weather;
+        const wetaherClear = weatherEl.main;
+        const wind = data.wind.speed;
+        const humidity = data.main.humidity;
+        const lat = data.coord.lat;
+        const lon = data.coord.lon;
+        const cloudy = data.clouds.all;
+        cloundyEl.textContent = cloudy;
+        clear.textContent = wetaherClear;
+        windEl.textContent = wind;
+        humidityEl.textContent = humidity;
+        const date = new Date();
+        const month = date.getMonth();
+        const mountName = monthNames[month];
 
-    if (weatherEl.main === 'Clear' && weatherEl.id === 800) {
-      const img = document.querySelector('.img__weather');
-      img.src = '/clear.629910ed.png';
-      document.body.style.backgroundImage = 'url(/day-clear-beah.8755332a.jpg)';
-    }
-    if (
-      weatherEl.main === 'Clear' &&
-      weatherEl.id === 800 &&
-      weatherEl.icon === '01n'
-    ) {
-      const img = document.querySelector('.img__weather');
-      img.src = '/night.422c4a31.png';
-      document.body.style.backgroundImage = 'url(/clear-night.474935b4.jpg)';
-      // console.log();
-    }
-    if (
-      weatherEl.main === 'Clouds' &&
-      weatherEl.id >= 801 &&
-      weatherEl.id <= 804
-    ) {
-      const img = document.querySelector('.img__weather');
-      img.src = '/cloudy-weather.ea7810a0.png';
-      document.body.style.backgroundImage = 'url(/cloudy-weather.38153706.png)';
-    }
+        const day = date.getDate();
+        const whatDay = date.getDay();
+        const currentDay = dayNames[whatDay];
+        const hour = date.getHours().toString().padStart(2, '0');
+        const minute = date.getMinutes().toString().padStart(2, '0');
+        const year = date.getFullYear();
+        const dateFullEl = document.querySelector('.weather__date');
+        dateFullEl.textContent = `${hour}:${minute} - ${currentDay}, ${day} ${mountName} ${year}`;
 
-    if (
-      weatherEl.main === 'Rain' &&
-      weatherEl.id >= 500 &&
-      weatherEl.id <= 531
-    ) {
-      const img = document.querySelector('.img__weather');
-      img.src = '/rain-iconpng.0d69055a.png';
-      document.body.style.backgroundImage = 'url(/rain-weather.cd3a6594.jpg)';
-    }
-    if (
-      weatherEl.main === 'Mist' ||
-      weatherEl.main === 'Smoke' ||
-      weatherEl.main === 'Haze'
-    ) {
-      const img = document.querySelector('.img__weather');
-      img.src = '/iconizer-weather.f6570355.svg';
-      document.body.style.backgroundImage = 'url(/foggy-forest-4.6d264000.jpg)';
-    }
-    if (
-      weatherEl.main === 'Snow' &&
-      weatherEl.id >= 600 &&
-      weatherEl.id <= 622
-    ) {
-      const img = document.querySelector('.img__weather');
-      img.src = '/snow-icon-color.2f365575.png';
-      document.body.style.backgroundImage =
-        'url(/nature-dark-snow-water-wallpaper.736d400a.jpg)';
-    }
-    if (
-      weatherEl.main === 'Thunderstorm' &&
-      weatherEl.id >= 200 &&
-      weatherEl.id <= 232
-    ) {
-      const img = document.querySelector('.img__weather');
-      img.src = '/thunderstorm-icon.2dd16e4c.png';
-      document.body.style.backgroundImage =
-        'url(/Thunderstorm-weather.4c552d96.jpg)';
-    }
+        if (weatherEl.main === 'Clear' && weatherEl.id === 800) {
+          const img = document.querySelector('.img__weather');
+          img.src = '/clear.629910ed.png';
+          document.body.style.backgroundImage =
+            'url(/day-clear-beah.8755332a.jpg)';
+        }
+        if (
+          weatherEl.main === 'Clear' &&
+          weatherEl.id === 800 &&
+          weatherEl.icon === '01n'
+        ) {
+          const img = document.querySelector('.img__weather');
+          img.src = '/night.422c4a31.png';
+          document.body.style.backgroundImage =
+            'url(/clear-night.474935b4.jpg)';
+          // console.log();
+        }
+        if (
+          weatherEl.main === 'Clouds' &&
+          weatherEl.id >= 801 &&
+          weatherEl.id <= 804
+        ) {
+          const img = document.querySelector('.img__weather');
+          img.src = '/cloudy-weather.ea7810a0.png';
+          document.body.style.backgroundImage =
+            'url(/cloudy-weather.38153706.png)';
+        }
 
-    getAllweather(lat, lon);
+        if (
+          weatherEl.main === 'Rain' &&
+          weatherEl.id >= 500 &&
+          weatherEl.id <= 531
+        ) {
+          const img = document.querySelector('.img__weather');
+          img.src = '/rain-iconpng.0d69055a.png';
+          document.body.style.backgroundImage =
+            'url(/rain-weather.cd3a6594.jpg)';
+        }
+        if (
+          weatherEl.main === 'Mist' ||
+          weatherEl.main === 'Smoke' ||
+          weatherEl.main === 'Haze'
+        ) {
+          const img = document.querySelector('.img__weather');
+          img.src = '/iconizer-weather.f6570355.svg';
+          document.body.style.backgroundImage =
+            'url(/foggy-forest-4.6d264000.jpg)';
+        }
+        if (
+          weatherEl.main === 'Snow' &&
+          weatherEl.id >= 600 &&
+          weatherEl.id <= 622
+        ) {
+          const img = document.querySelector('.img__weather');
+          img.src = '/snow-icon-color.2f365575.png';
+          document.body.style.backgroundImage =
+            'url(/nature-dark-snow-water-wallpaper.736d400a.jpg)';
+        }
+        if (
+          weatherEl.main === 'Thunderstorm' &&
+          weatherEl.id >= 200 &&
+          weatherEl.id <= 232
+        ) {
+          const img = document.querySelector('.img__weather');
+          img.src = '/thunderstorm-icon.2dd16e4c.png';
+          document.body.style.backgroundImage =
+            'url(/Thunderstorm-weather.4c552d96.jpg)';
+        }
+
+        getAllweather(lat, lon);
+      } else {
+        throw new Error(
+          'Weather API request failed. Please try another city again!'
+        );
+      }
+    } catch (error) {
+      alert(error.message);
+    }
   }
   async function getAllweather(lat, lon) {
     let YOUR_API_KEY = 'da13c92adcb97e26e489d8a4eccc88b9';
     const res = await fetch(
       `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${YOUR_API_KEY}&units=metric`
     );
+
+   try {
+    if(res.ok){
+
+    }
+    
+   } catch (error) {
+    
+   }
+
+
+   
+
+
     const data = await res.json();
     console.log(data);
     const forecastList = data.list;
@@ -415,6 +445,18 @@ searchWeather.addEventListener('click', function () {
 
   weather();
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 citiesPrev.forEach(city => {
   city.addEventListener('click', function (e) {

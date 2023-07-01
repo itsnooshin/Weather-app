@@ -216,18 +216,9 @@ h5 {
 
 
 .waether__week{
-  display: flex;
-  /* background-color: #191a15; */
- 
-  
+  display: flex; 
 }
-.weather__temp__minmax{
-  /* background-color: red; */
-}
-.weather__week-info{
-  /* background-color: red; */
-  /* display: flex; */
-}
+
 .day{
   font-size: 1.7rem;
 }
@@ -239,15 +230,16 @@ h5 {
 .weather__temp-min{
   font-size: 1.5rem;
 }
-.weather__week-info{
-  /* background-color: red; */
-}
+
 .waether__week{
-  /* background-color: red; */
+ 
   display: flex;
 }
 /* media queris */
 @media (max-width: 1024px) {
+  body{
+    background-color: red;
+  }
   html {
     font-size: 56.25%;
   }
