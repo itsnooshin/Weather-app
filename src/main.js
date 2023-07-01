@@ -58,8 +58,8 @@ const dateToday = function () {
 
 const weatherCondition = function (weatherEl) {
   if (weatherEl.main === 'Clear' && weatherEl.id === 800) {
-    img.src = '/clear.629910ed.png';
-    document.body.style.backgroundImage = 'url(/day-clear-beah.8755332a.jpg)';
+    img.src = './icons/clear.png';
+    document.body.style.backgroundImage = 'url(../images/day-clear-beah.jpg)';
   }
   if (
     weatherEl.main === 'Clear' &&
@@ -67,7 +67,7 @@ const weatherCondition = function (weatherEl) {
     weatherEl.icon === '01n'
   ) {
     img.src = '/night.422c4a31.png';
-    document.body.style.backgroundImage = 'url(/clear-night.474935b4.jpg)';
+    document.body.style.backgroundImage = 'url(../images/clear-night.jpg)';
   }
   if (
     weatherEl.main === 'Clouds' &&
@@ -471,7 +471,7 @@ citiesPrev.forEach(city => {
             maxt.textContent = el[1].max;
             day.textContent = wwkOfday;
             if (el[1].image.main === 'Clear') {
-              imges[i].src = '/clear.629910ed.png';
+              imges[i].src = './icons/clear.png';
             }
             if (el[1].image.main === 'Clouds') {
               imges[i].src = '/cloudy-weather.ea7810a0.png';
