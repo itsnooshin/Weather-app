@@ -13,6 +13,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+
   height: 100vh;
   font-family: 'Poppins', sans-serif;
 }
@@ -273,8 +274,7 @@ h5 {
   }
   .weather__header {
     max-width: 700px;
-   margin: 2rem 2rem;
-   
+    margin: 2rem 2rem;
   }
   .main__left {
     padding-left: 1rem;
@@ -284,28 +284,46 @@ h5 {
     margin-bottom: 2rem;
   }
   .weather__week-info {
-     gap: 12px;
+    gap: 12px;
     max-width: 400px;
+    margin: 0 auto;
   }
- 
+
   .day {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
   }
   .waether__week .img__weather-week {
-    width: 30%;
+    width: 50%;
   }
-  .weather__temp-max{
-    font-size: 1.3rem;
+  .weather__temp-max {
+    font-size: 1.4rem;
   }
-  .weather__temp-min{
-    font-size: 1.3rem;
+  .weather__temp-min {
+    font-size: 1.4rem;
   }
-  .weather__temp__minmax{
+  .weather__temp__minmax {
     display: flex;
     align-items: center;
     gap: 5px;
   }
-  .main__right{
+  .main__right {
     padding-bottom: 3rem;
   }
+   .input__text::placeholder{
+    font-size: 2rem;
+   }
+   .title__cities{
+    
+    font-size: 2rem;
+   }
+   .weather__deatail-title{
+    font-size: 2rem;
+   }
+   .weather__detail-info{
+   
+    font-size: 1.9rem;
+   }
+   .weather__detail-info--percentage {
+   font-size: 1.7rem;
+   }
 }

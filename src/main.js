@@ -93,8 +93,9 @@ const weatherCondition = function (weatherEl) {
     (weatherEl.main === 'Tornado' && weatherEl.id >= 701 && weatherEl.id <= 781)
   ) {
     img.src = '/iconizer-weather.f6570355.svg';
-    document.body.style.backgroundImage = 'url(/foggy-forest-4.6d264000.jpg)';
+    document.body.style.backgroundImage = 'url(/fogy=-png.9b8b5598.jpg)';
   }
+
   if (weatherEl.main === 'Snow' && weatherEl.id >= 600 && weatherEl.id <= 622) {
     img.src = '/snow-icon-color.2f365575.png';
     document.body.style.backgroundImage =
@@ -155,6 +156,7 @@ async function weather(weatherEl) {
 }
 
 weather();
+
 
 async function getAllweather(lat, lon) {
   let YOUR_API_KEY = 'da13c92adcb97e26e489d8a4eccc88b9';
