@@ -1,3 +1,7 @@
+import newImage from './images/clear-night.jpg';
+import iconClear from './icons/night.png';
+
+
 'use strict';
 const weatherTemperature = document.querySelector('.temp');
 const inputCityWeather = document.querySelector('.input__text');
@@ -15,6 +19,7 @@ const minTemp = document.querySelectorAll('.tem__min');
 const week = document.querySelector('.weather__week-info');
 const imges = document.querySelectorAll('.img__weather-week');
 const img = document.querySelector('.img__weather');
+
 
 let monthNames = [
   'January',
@@ -58,18 +63,20 @@ const dateToday = function () {
 
 const weatherCondition = function (weatherEl) {
   if (weatherEl.main === 'Clear' && weatherEl.id === 800) {
+    
     img.src = './icons/clear.png';
-    document.body.style.backgroundImage = 'url(../images/day-clear-beah.jpg)';
+    // main.style.backgroundImage = 'url(../images/day-clear-beah.jpg)';
   }
   if (
     weatherEl.main === 'Clear' &&
     weatherEl.id === 800 &&
     weatherEl.icon === '01n'
   ) {
-    img.src = './icons/night.png';
-    document.body.style.backgroundImage = "url('./images/clear-night.jpg')";
-    document.body.style.background = 'red';
-    console.log('n');
+    img.src = `${iconClear}`;
+    const main = document.querySelector('.main');
+    document.body.style.background = `url(${newImage})`;
+
+    console.log('kkkk');
   }
   if (
     weatherEl.main === 'Clouds' &&

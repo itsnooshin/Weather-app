@@ -10,6 +10,8 @@ html {
 }
 body {
   background-image: url('./images/cloudy-weather.png');
+  /* background-image: url('./images/clear-night.jpg'); */
+  
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -34,6 +36,8 @@ h5 {
   color: #fff;
 }
 .main {
+
+ 
   display: grid;
   grid-template-columns: 2fr 1fr;
   /* height: 100vh; */
