@@ -10,12 +10,9 @@ html {
 }
 body {
   background-image: url('./images/cloudy-weather.png');
-  /* background-image: url('./images/clear-night.jpg'); */
-  
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-
   height: 100vh;
   font-family: 'Poppins', sans-serif;
 }
@@ -36,8 +33,6 @@ h5 {
   color: #fff;
 }
 .main {
-
- 
   display: grid;
   grid-template-columns: 2fr 1fr;
   /* height: 100vh; */
@@ -313,21 +308,19 @@ h5 {
   .main__right {
     padding-bottom: 3rem;
   }
-   .input__text::placeholder{
+  .input__text::placeholder {
     font-size: 2rem;
-   }
-   .title__cities{
-    
+  }
+  .title__cities {
     font-size: 2rem;
-   }
-   .weather__deatail-title{
+  }
+  .weather__deatail-title {
     font-size: 2rem;
-   }
-   .weather__detail-info{
-   
+  }
+  .weather__detail-info {
     font-size: 1.9rem;
-   }
-   .weather__detail-info--percentage {
-   font-size: 1.7rem;
-   }
+  }
+  .weather__detail-info--percentage {
+    font-size: 1.7rem;
+  }
 }

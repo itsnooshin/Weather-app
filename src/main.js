@@ -1,8 +1,20 @@
 import newImage from './images/clear-night.jpg';
 import iconClear from './icons/night.png';
+import iconClearday from './icons/clear.png';
+import iconCloudy from './icons/cloudy-weather.png';
+import iconmistday from './icons/iconizer-weather.svg';
+import iconRainday from './icons/rain-iconpng.png';
+import iconSnowday from './icons/snow-icon.png';
+import iconThunderstormday from './icons/thunderstorm-icon.png';
+import bcgimgDayClear from './images/day-clear-beah.jpg';
+import bcgimgDayNight from './images/clear-night.jpg';
+import bcgimgDayFogy from './images/fogy=-png.jpg';
+import bcgimgDayRain from './images/rain-weather.jpg';
+import bcgimgDaySnow from './images/snow-cloudy.jpg';
+import bcgimgDayThunderstrom from './images/Thunderstorm-weather.jpg';
+import bcgimgDayCloudy from './images/cloudy-weather.png';
 
-
-'use strict';
+('use strict');
 const weatherTemperature = document.querySelector('.temp');
 const inputCityWeather = document.querySelector('.input__text');
 const searchWeather = document.querySelector('.form__button');
@@ -19,7 +31,6 @@ const minTemp = document.querySelectorAll('.tem__min');
 const week = document.querySelector('.weather__week-info');
 const imges = document.querySelectorAll('.img__weather-week');
 const img = document.querySelector('.img__weather');
-
 
 let monthNames = [
   'January',
@@ -63,9 +74,10 @@ const dateToday = function () {
 
 const weatherCondition = function (weatherEl) {
   if (weatherEl.main === 'Clear' && weatherEl.id === 800) {
-    
-    img.src = './icons/clear.png';
+    img.src = `${iconClearday}`;
     // main.style.backgroundImage = 'url(../images/day-clear-beah.jpg)';
+    document.body.style.background = `url(${bcgimgDayClear})`;
+    document.body.style.backgroundSize = "cover";
   }
   if (
     weatherEl.main === 'Clear' &&
@@ -73,23 +85,24 @@ const weatherCondition = function (weatherEl) {
     weatherEl.icon === '01n'
   ) {
     img.src = `${iconClear}`;
-    const main = document.querySelector('.main');
-    document.body.style.background = `url(${newImage})`;
 
-    console.log('kkkk');
+    document.body.style.background = `url(${bcgimgDayNight})`;
+    document.body.style.backgroundSize = "cover";
   }
   if (
     weatherEl.main === 'Clouds' &&
     weatherEl.id >= 801 &&
     weatherEl.id <= 804
   ) {
-    img.src = '/cloudy-weather.ea7810a0.png';
-    document.body.style.backgroundImage = 'url(/cloudy-weather.38153706.png)';
+    img.src = `${iconCloudy}`;
+    document.body.style.backgroundImage = `url(${bcgimgDayCloudy})`;
+    document.body.style.backgroundSize = "cover";
   }
 
   if (weatherEl.main === 'Rain' && weatherEl.id >= 500 && weatherEl.id <= 531) {
-    img.src = '/rain-iconpng.0d69055a.png';
-    document.body.style.backgroundImage = 'url(/rain-weather.cd3a6594.jpg)';
+    img.src = `${iconRainday}`;
+    document.body.style.backgroundImage = `url(${bcgimgDayRain})`;
+    document.body.style.backgroundSize = "cover";
   }
   if (
     weatherEl.main === 'Mist' ||
@@ -101,23 +114,24 @@ const weatherCondition = function (weatherEl) {
     weatherEl.main === 'Squall' ||
     (weatherEl.main === 'Tornado' && weatherEl.id >= 701 && weatherEl.id <= 781)
   ) {
-    img.src = '/iconizer-weather.f6570355.svg';
-    document.body.style.backgroundImage = 'url(/fogy=-png.9b8b5598.jpg)';
+    img.src = `${iconmistday}`;
+    document.body.style.backgroundImage = `url(${bcgimgDayFogy})`;
+    document.body.style.backgroundSize = "cover";
   }
 
   if (weatherEl.main === 'Snow' && weatherEl.id >= 600 && weatherEl.id <= 622) {
-    img.src = '/snow-icon-color.2f365575.png';
-    document.body.style.backgroundImage =
-      'url(/nature-dark-snow-water-wallpaper.736d400a.jpg)';
+    img.src = `${iconSnowday}`;
+    document.body.style.backgroundImage = `url(${bcgimgDaySnow})`;
+    document.body.style.backgroundSize = "cover";
   }
   if (
     weatherEl.main === 'Thunderstorm' &&
     weatherEl.id >= 200 &&
     weatherEl.id <= 232
   ) {
-    img.src = '/thunderstorm-icon.2dd16e4c.png';
-    document.body.style.backgroundImage =
-      'url(/Thunderstorm-weather.4c552d96.jpg)';
+    img.src = `${iconThunderstormday}`;
+    document.body.style.backgroundImage = `url(${bcgimgDayThunderstrom})`;
+    document.body.style.backgroundSize = "cover";
   }
 };
 
@@ -230,13 +244,31 @@ async function getAllweather(lat, lon) {
     maxt.textContent = el[1].max;
     day.textContent = wwkOfday;
     if (el[1].image.main === 'Clear') {
-      imges[i].src = '/clear.629910ed.png';
+      imges[i].src = `${iconClearday}`;
     }
     if (el[1].image.main === 'Clouds') {
-      imges[i].src = '/cloudy-weather.ea7810a0.png';
+      imges[i].src = `${iconCloudy}`;
     }
     if (el[1].image.main === 'Rain') {
-      imges[i].src = '/rain-iconpng.0d69055a.png';
+      imges[i].src = `${iconRainday}`;
+    }
+    if (el[1].image.main === 'Snow') {
+      imges[i].src = `${iconSnowday}`;
+    }
+    if (el[1].image.main === 'Thunderstorm') {
+      imges[i].src = `${iconThunderstormday}`;
+    }
+    if (
+      el[1].image.main === 'Mist' ||
+      el[1].image.main === 'Haze' ||
+      el[1].image.main === 'Smoke' ||
+      el[1].image.main === 'Dust' ||
+      el[1].image.main === 'Squall' ||
+      el[1].image.main === 'Ash' ||
+      el[1].image.main === 'Fog' ||
+      el[1].image.main === 'Tornado'
+    ) {
+      imges[i].src = `${iconThunderstormday}`;
     }
   }
 }
@@ -265,7 +297,6 @@ searchWeather.addEventListener('click', function (event) {
         const [weatherEl] = data.weather;
         const lat = data.coord.lat;
         const lon = data.coord.lon;
-
         informationWeather(weatherEl, city, data);
         dateToday();
         weatherCondition(weatherEl);
@@ -346,13 +377,31 @@ searchWeather.addEventListener('click', function (event) {
           maxt.textContent = el[1].max;
           day.textContent = wwkOfday;
           if (el[1].image.main === 'Clear') {
-            imges[i].src = '/clear.629910ed.png';
+            imges[i].src = `${iconClearday}`;
           }
           if (el[1].image.main === 'Clouds') {
-            imges[i].src = '/cloudy-weather.ea7810a0.png';
+            imges[i].src = `${iconCloudy}`;
           }
           if (el[1].image.main === 'Rain') {
-            imges[i].src = '/rain-iconpng.0d69055a.png';
+            imges[i].src = `${iconRainday}`;
+          }
+          if (el[1].image.main === 'Snow') {
+            imges[i].src = `${iconSnowday}`;
+          }
+          if (el[1].image.main === 'Thunderstorm') {
+            imges[i].src = `${iconThunderstormday}`;
+          }
+          if (
+            el[1].image.main === 'Mist' ||
+            el[1].image.main === 'Haze' ||
+            el[1].image.main === 'Smoke' ||
+            el[1].image.main === 'Dust' ||
+            el[1].image.main === 'Squall' ||
+            el[1].image.main === 'Ash' ||
+            el[1].image.main === 'Fog' ||
+            el[1].image.main === 'Tornado'
+          ) {
+            imges[i].src = `${iconThunderstormday}`;
           }
         }
       }
@@ -480,16 +529,31 @@ citiesPrev.forEach(city => {
             maxt.textContent = el[1].max;
             day.textContent = wwkOfday;
             if (el[1].image.main === 'Clear') {
-              imges[i].src = './icons/clear.png';
+              imges[i].src = `${iconClearday}`;
             }
             if (el[1].image.main === 'Clouds') {
-              imges[i].src = '/cloudy-weather.ea7810a0.png';
+              imges[i].src = `${iconCloudy}`;
             }
             if (el[1].image.main === 'Rain') {
-              imges[i].src = '/rain-iconpng.0d69055a.png';
+              imges[i].src = `${iconRainday}`;
+            }
+            if (el[1].image.main === 'Snow') {
+              imges[i].src = `${iconSnowday}`;
             }
             if (el[1].image.main === 'Thunderstorm') {
-              imges[i].src = '/thunderstorm-icon.2dd16e4c.png';
+              imges[i].src = `${iconThunderstormday}`;
+            }
+            if (
+              el[1].image.main === 'Mist' ||
+              el[1].image.main === 'Haze' ||
+              el[1].image.main === 'Smoke' ||
+              el[1].image.main === 'Dust' ||
+              el[1].image.main === 'Squall' ||
+              el[1].image.main === 'Ash' ||
+              el[1].image.main === 'Fog' ||
+              el[1].image.main === 'Tornado'
+            ) {
+              imges[i].src = `${iconThunderstormday}`;
             }
           }
         }
