@@ -66,8 +66,10 @@ const weatherCondition = function (weatherEl) {
     weatherEl.id === 800 &&
     weatherEl.icon === '01n'
   ) {
-    img.src = '/night.422c4a31.png';
-    document.body.style.backgroundImage = 'url(../images/clear-night.jpg)';
+    img.src = './icons/night.png';
+    document.body.style.backgroundImage = "url('./images/clear-night.jpg')";
+    document.body.style.background = 'red';
+    console.log('n');
   }
   if (
     weatherEl.main === 'Clouds' &&

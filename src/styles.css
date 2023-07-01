@@ -9,7 +9,7 @@ html {
   font-size: 62.5%;
 }
 body {
-  background-image: url('../images/cloudy-weather.png');
+  background-image: url('./images/cloudy-weather.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
