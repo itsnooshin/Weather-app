@@ -77,7 +77,9 @@ const weatherCondition = function (weatherEl) {
     img.src = `${iconClearday}`;
     // main.style.backgroundImage = 'url(../images/day-clear-beah.jpg)';
     document.body.style.background = `url(${bcgimgDayClear})`;
-    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundSize = ' cover';
+    document.body.style.backgroundRepeat = 'no-reapet';
+    document.body.style.backgroundPosition = 'center';
   }
   if (
     weatherEl.main === 'Clear' &&
@@ -87,7 +89,9 @@ const weatherCondition = function (weatherEl) {
     img.src = `${iconClear}`;
 
     document.body.style.background = `url(${bcgimgDayNight})`;
-    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundRepeat = 'no-reapet';
+    document.body.style.backgroundPosition = 'center';
   }
   if (
     weatherEl.main === 'Clouds' &&
@@ -96,13 +100,17 @@ const weatherCondition = function (weatherEl) {
   ) {
     img.src = `${iconCloudy}`;
     document.body.style.backgroundImage = `url(${bcgimgDayCloudy})`;
-    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundRepeat = 'no-reapet';
+    document.body.style.backgroundPosition = 'center';
   }
 
   if (weatherEl.main === 'Rain' && weatherEl.id >= 500 && weatherEl.id <= 531) {
     img.src = `${iconRainday}`;
     document.body.style.backgroundImage = `url(${bcgimgDayRain})`;
-    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundRepeat = 'no-reapet';
+    document.body.style.backgroundPosition = 'center';
   }
   if (
     weatherEl.main === 'Mist' ||
@@ -116,13 +124,17 @@ const weatherCondition = function (weatherEl) {
   ) {
     img.src = `${iconmistday}`;
     document.body.style.backgroundImage = `url(${bcgimgDayFogy})`;
-    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundRepeat = 'no-reapet';
+    document.body.style.backgroundPosition = 'center';
   }
 
   if (weatherEl.main === 'Snow' && weatherEl.id >= 600 && weatherEl.id <= 622) {
     img.src = `${iconSnowday}`;
     document.body.style.backgroundImage = `url(${bcgimgDaySnow})`;
-    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundRepeat = 'no-reapet';
+    document.body.style.backgroundPosition = 'center';
   }
   if (
     weatherEl.main === 'Thunderstorm' &&
@@ -131,7 +143,9 @@ const weatherCondition = function (weatherEl) {
   ) {
     img.src = `${iconThunderstormday}`;
     document.body.style.backgroundImage = `url(${bcgimgDayThunderstrom})`;
-    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundRepeat = 'no-reapet';
+    document.body.style.backgroundPosition = 'center';
   }
 };
 

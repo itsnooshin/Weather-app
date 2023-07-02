@@ -258,10 +258,24 @@ h5 {
 @media (max-width: 600px) {
   html {
     font-size: 50%;
+    
   }
-  /* body{
-    height: 200%;
-  } */
+  body{
+    /* height: 100%;
+    width: 100%; */
+    background-repeat: no-repeat;
+  }
+
+
+  body {
+    
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    height: 100%;
+    background-color: red;
+  }
+
   .weather__header-temporty {
     font-size: 5rem;
   }
