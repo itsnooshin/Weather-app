@@ -3,7 +3,7 @@
 A simple weather application that provides current weather information for a given location.
 
 
-![](./images/Nile Dashboard & Design System Cover.jpg)
+![](https://i.ibb.co/19fLgSX/Nile-Dashboard-Design-System-Cover.jpg)
 
 
 
