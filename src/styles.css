@@ -75,6 +75,7 @@ h5 {
 }
 .weather__date {
   font-size: 1.6rem;
+  color: white;
   font-weight: 500;
 }
 .weather__title--type {

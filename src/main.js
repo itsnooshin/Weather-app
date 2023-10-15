@@ -14,48 +14,26 @@ import bcgimgDaySnow from './images/snow-cloudy.jpg';
 import bcgimgDayThunderstrom from './images/Thunderstorm-weather.jpg';
 import bcgimgDayCloudy from './images/cloudy-weather.png';
 
-('use strict');
-const weatherTemperature = document.querySelector('.temp');
-const inputCityWeather = document.querySelector('.input__text');
-const searchWeather = document.querySelector('.form__button');
-const textCity = document.querySelector('.weather__city');
-const clear = document.querySelector('.weather__title--type');
-const humidityEl = document.querySelector('.numer-hum');
-const cloundyEl = document.querySelector('.cloud-num');
-const windEl = document.querySelector('.wind-num');
-const rainEl = document.querySelector('.rain-num');
-const days = document.querySelectorAll('.day');
-const citiesPrev = document.querySelectorAll('.title__cities');
-const maxTemp = document.querySelectorAll('.tem__max');
-const minTemp = document.querySelectorAll('.tem__min');
-const week = document.querySelector('.weather__week-info');
-const imges = document.querySelectorAll('.img__weather-week');
-const img = document.querySelector('.img__weather');
+import {
+  weatherTemperature,
+  inputCityWeather,
+  searchWeather,
+  textCity,
+  clear,
+  humidityEl,
+  cloundyEl,
+  windEl,
+  rainEl,
+  days,
+  citiesPrev,
+  maxTemp,
+  minTemp,
+  week,
+  imges,
+  img,
+} from './variable.js';
 
-let monthNames = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
-let dayNames = [
-  'Sunday',
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'saturday',
-];
-const dayWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'sat'];
+import { dayWeek, monthNames, dayNames, mistyConditions } from './constant.js';
 
 // date
 const dateToday = function () {
@@ -75,11 +53,12 @@ const dateToday = function () {
 const weatherCondition = function (weatherEl) {
   if (weatherEl.main === 'Clear' && weatherEl.id === 800) {
     img.src = `${iconClearday}`;
-    // main.style.backgroundImage = 'url(../images/day-clear-beah.jpg)';
-    document.body.style.background = `url(${bcgimgDayClear})`;
-    document.body.style.backgroundSize = ' cover';
-    document.body.style.backgroundRepeat = 'no-reapet';
-    document.body.style.backgroundPosition = 'center';
+
+    document.body.style = `background :url(${bcgimgDayClear});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    `;
   }
   if (
     weatherEl.main === 'Clear' &&
@@ -87,11 +66,11 @@ const weatherCondition = function (weatherEl) {
     weatherEl.icon === '01n'
   ) {
     img.src = `${iconClear}`;
-
-    document.body.style.background = `url(${bcgimgDayNight})`;
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundRepeat = 'no-reapet';
-    document.body.style.backgroundPosition = 'center';
+    document.body.style = `background :url(${bcgimgDayNight});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    `;
   }
   if (
     weatherEl.main === 'Clouds' &&
@@ -99,34 +78,35 @@ const weatherCondition = function (weatherEl) {
     weatherEl.id <= 804
   ) {
     img.src = `${iconCloudy}`;
-    document.body.style.backgroundImage = `url(${bcgimgDayCloudy})`;
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundRepeat = 'no-reapet';
-    document.body.style.backgroundPosition = 'center';
+    document.body.style = `background :url(${bcgimgDayCloudy});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    `;
   }
 
   if (weatherEl.main === 'Rain' && weatherEl.id >= 500 && weatherEl.id <= 531) {
     img.src = `${iconRainday}`;
-    document.body.style.backgroundImage = `url(${bcgimgDayRain})`;
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundRepeat = 'no-reapet';
-    document.body.style.backgroundPosition = 'center';
+
+    document.body.style = `background :url(${bcgimgDayRain});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    `;
   }
   if (
-    weatherEl.main === 'Mist' ||
-    weatherEl.main === 'Haze' ||
-    weatherEl.main === 'Smoke' ||
-    weatherEl.main === 'Dust' ||
-    weatherEl.main === 'Fog' ||
-    weatherEl.main === 'Ash' ||
-    weatherEl.main === 'Squall' ||
+    mistyConditions.includes(weatherEl.main) ||
     (weatherEl.main === 'Tornado' && weatherEl.id >= 701 && weatherEl.id <= 781)
   ) {
-    img.src = `${iconmistday}`;
-    document.body.style.backgroundImage = `url(${bcgimgDayFogy})`;
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundRepeat = 'no-reapet';
-    document.body.style.backgroundPosition = 'center';
+    img.src = iconmistday;
+    document.body.style.cssText = `
+      background-image: url(${bcgimgDayFogy});
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    `;
   }
 
   if (weatherEl.main === 'Snow' && weatherEl.id >= 600 && weatherEl.id <= 622) {
@@ -181,8 +161,6 @@ async function weather(weatherEl) {
     const temperature = Math.ceil((data.main.temp - 273.15).toFixed(2));
     weatherTemperature.textContent = temperature;
     const [weatherEl] = data.weather;
-    const icons = weatherEl.icon;
-    const el3 = data.weather[0].icon;
     const lat = data.coord.lat;
     const lon = data.coord.lon;
     informationWeather(weatherEl, city, data);
@@ -200,16 +178,13 @@ async function getAllweather(lat, lon) {
     `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${YOUR_API_KEY}&units=metric`
   );
   const data = await res.json();
-  // console.log(data.pop);
   const forecastList = data.list;
   const currentDate = new Date();
-  // Filter the forecast data for the next 5 days
   const nextDays = forecastList.filter(item => {
-    // pop
     rainEl.textContent = item.pop;
 
     const itemDate = new Date(item.dt * 1000);
-    let el = new Date(itemDate);
+    let dateWeek = new Date(itemDate);
     if (itemDate.getDate() !== currentDate.getDate()) {
       const day = new Date(itemDate);
       return itemDate.getDate();
@@ -247,40 +222,42 @@ async function getAllweather(lat, lon) {
 
   const element = Object.entries(obj);
   for (let i = 0; i < element.length; i++) {
-    const el = element[i];
+    const dayandweather = element[i];
+
     const day = days[i];
-    const newel = new Date(el[0]);
+    const newel = new Date(dayandweather[0]);
     const option = { weekday: 'short' };
-    const wwkOfday = newel.toLocaleDateString('en-US', option);
+    const weekOfDay = newel.toLocaleDateString('en-US', option);
     const mint = minTemp[i];
     const maxt = maxTemp[i];
-    mint.textContent = el[1].min;
-    maxt.textContent = el[1].max;
-    day.textContent = wwkOfday;
-    if (el[1].image.main === 'Clear') {
+    mint.textContent = dayandweather[1].min;
+    maxt.textContent = dayandweather[1].max;
+    day.textContent = weekOfDay;
+
+    if (dayandweather[1].image.main === 'Clear') {
       imges[i].src = `${iconClearday}`;
     }
-    if (el[1].image.main === 'Clouds') {
+    if (dayandweather[1].image.main === 'Clouds') {
       imges[i].src = `${iconCloudy}`;
     }
-    if (el[1].image.main === 'Rain') {
+    if (dayandweather[1].image.main === 'Rain') {
       imges[i].src = `${iconRainday}`;
     }
-    if (el[1].image.main === 'Snow') {
+    if (dayandweather[1].image.main === 'Snow') {
       imges[i].src = `${iconSnowday}`;
     }
-    if (el[1].image.main === 'Thunderstorm') {
+    if (dayandweather[1].image.main === 'Thunderstorm') {
       imges[i].src = `${iconThunderstormday}`;
     }
     if (
-      el[1].image.main === 'Mist' ||
-      el[1].image.main === 'Haze' ||
-      el[1].image.main === 'Smoke' ||
-      el[1].image.main === 'Dust' ||
-      el[1].image.main === 'Squall' ||
-      el[1].image.main === 'Ash' ||
-      el[1].image.main === 'Fog' ||
-      el[1].image.main === 'Tornado'
+      dayandweather[1].image.main === 'Mist' ||
+      dayandweather[1].image.main === 'Haze' ||
+      dayandweather[1].image.main === 'Smoke' ||
+      dayandweather[1].image.main === 'Dust' ||
+      dayandweather[1].image.main === 'Squall' ||
+      dayandweather[1].image.main === 'Ash' ||
+      dayandweather[1].image.main === 'Fog' ||
+      dayandweather[1].image.main === 'Tornado'
     ) {
       imges[i].src = `${iconThunderstormday}`;
     }
@@ -289,7 +266,7 @@ async function getAllweather(lat, lon) {
 
 // When the user clicks on a search button
 
-searchWeather.addEventListener('click', function (event) {
+searchWeather.addEventListener('click', function () {
   let apikey = 'da13c92adcb97e26e489d8a4eccc88b9';
   const cityel = inputCityWeather.value;
   const el2 = cityel
@@ -432,13 +409,13 @@ citiesPrev.forEach(city => {
   city.addEventListener('click', function (e) {
     let YOUR_API_KEY = 'da13c92adcb97e26e489d8a4eccc88b9';
     const cityel = e.target.textContent;
-    const el2 = cityel
+    const newCity = cityel
       .split(' ')
       .map(el => el[0].toUpperCase() + el.slice(1))
       .join(' ');
 
-    textCity.textContent = el2;
-    let city = el2;
+    textCity.textContent = newCity;
+    let city = newCity;
 
     async function weatherElbtn() {
       const response = await fetch(
@@ -446,21 +423,15 @@ citiesPrev.forEach(city => {
       );
       try {
         if (response.ok) {
-          textCity.textContent = el2;
-
+          textCity.textContent = newCity;
           const data = await response.json();
           const [weatherEl] = data.weather;
-
           const tempcity = Math.round(Number(data.main.temp));
           weatherTemperature.textContent = tempcity;
           const lat = data.coord.lat;
           const lon = data.coord.lon;
-          // informationWeather(weatherEl, city, data);
           const [weatherElCity] = data.weather;
-          const icons = weatherElCity.icon;
-          const el3 = data.weather[0].icon;
           const wetaherClear = weatherEl.description;
-          console.log(weatherEl);
           const wind = data.wind.speed;
           const humidity = data.main.humidity;
           const cloudy = data.clouds.all;
@@ -532,40 +503,40 @@ citiesPrev.forEach(city => {
 
           const element = Object.entries(obj);
           for (let i = 0; i < element.length; i++) {
-            const el = element[i];
+            const newTemp = element[i];
             const day = days[i];
-            const newel = new Date(el[0]);
+            const newel = new Date(newTemp[0]);
             const option = { weekday: 'short' };
             const wwkOfday = newel.toLocaleDateString('en-US', option);
             const mint = minTemp[i];
             const maxt = maxTemp[i];
-            mint.textContent = el[1].min;
-            maxt.textContent = el[1].max;
+            mint.textContent = newTemp[1].min;
+            maxt.textContent = newTemp[1].max;
             day.textContent = wwkOfday;
-            if (el[1].image.main === 'Clear') {
+            if (newTemp[1].image.main === 'Clear') {
               imges[i].src = `${iconClearday}`;
             }
-            if (el[1].image.main === 'Clouds') {
+            if (newTemp[1].image.main === 'Clouds') {
               imges[i].src = `${iconCloudy}`;
             }
-            if (el[1].image.main === 'Rain') {
+            if (newTemp[1].image.main === 'Rain') {
               imges[i].src = `${iconRainday}`;
             }
-            if (el[1].image.main === 'Snow') {
+            if (newTemp[1].image.main === 'Snow') {
               imges[i].src = `${iconSnowday}`;
             }
-            if (el[1].image.main === 'Thunderstorm') {
+            if (newTemp[1].image.main === 'Thunderstorm') {
               imges[i].src = `${iconThunderstormday}`;
             }
             if (
-              el[1].image.main === 'Mist' ||
-              el[1].image.main === 'Haze' ||
-              el[1].image.main === 'Smoke' ||
-              el[1].image.main === 'Dust' ||
-              el[1].image.main === 'Squall' ||
-              el[1].image.main === 'Ash' ||
-              el[1].image.main === 'Fog' ||
-              el[1].image.main === 'Tornado'
+              newTemp[1].image.main === 'Mist' ||
+              newTemp[1].image.main === 'Haze' ||
+              newTemp[1].image.main === 'Smoke' ||
+              newTemp[1].image.main === 'Dust' ||
+              newTemp[1].image.main === 'Squall' ||
+              newTemp[1].image.main === 'Ash' ||
+              newTemp[1].image.main === 'Fog' ||
+              newTemp[1].image.main === 'Tornado'
             ) {
               imges[i].src = `${iconThunderstormday}`;
             }
